@@ -30,7 +30,7 @@ namespace UniRxExampleProject.Presenters
 
             if (this.PlayerView.IsValidObject())
             {
-                Debug.Log(this.PlayerView.CurrentHealthText.text);
+                Debug.Log(this.PlayerView.CurrentHealth.text);
             }
         }
     }

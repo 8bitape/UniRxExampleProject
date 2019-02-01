@@ -10,22 +10,22 @@ namespace UniRxExampleProject.Presenters
     public class PlayerView : PubSubMonoBehaviour
     {
         [SerializeField]
-        private Text _nameText;
+        private Text _name = null;
 
         [RequiredProperty]
-        public Text NameText { get { return this._nameText; } }
+        public Text Name { get { return this._name; } }
 
         [SerializeField]
-        private Text _currentHealthText;
+        private Text _currentHealth = null;
 
         [RequiredProperty]
-        public Text CurrentHealthText { get { return this._currentHealthText; } }
+        public Text CurrentHealth { get { return this._currentHealth; } }
 
         [SerializeField]
-        private Button _decreaseHealthButton;
+        private Button _decreaseHealth = null;
 
         [RequiredProperty]
-        public Button DecreaseHealthButton { get { return this._decreaseHealthButton; } }
+        public Button DecreaseHealth { get { return this._decreaseHealth; } }
 
         private void Awake()
         {

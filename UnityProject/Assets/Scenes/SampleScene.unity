@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 1118217035}
   - component: {fileID: 1118217034}
   m_Layer: 5
-  m_Name: CurrentHealthText
+  m_Name: CurrentHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 1145097290}
   - component: {fileID: 1145097289}
   m_Layer: 5
-  m_Name: DecreaseHealthButton
+  m_Name: DecreaseHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 1424784699}
   - component: {fileID: 1424784701}
   m_Layer: 5
-  m_Name: NameText
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -966,9 +966,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eae3b128e6edce43a137f532f73c893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameText: {fileID: 1424784699}
-  _currentHealthText: {fileID: 1118217035}
-  _decreaseHealthButton: {fileID: 1145097290}
+  _name: {fileID: 1424784699}
+  _currentHealth: {fileID: 1118217035}
+  _decreaseHealth: {fileID: 1145097290}
 --- !u!1 &2000310822
 GameObject:
   m_ObjectHideFlags: 0
