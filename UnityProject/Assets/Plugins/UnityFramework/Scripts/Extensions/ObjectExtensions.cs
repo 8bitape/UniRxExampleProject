@@ -1,4 +1,6 @@
-﻿namespace UnityFramework.Extensions
+﻿using UnityEngine;
+
+namespace UnityFramework.Extensions
 {
     public static class ObjectExtensions
     {
