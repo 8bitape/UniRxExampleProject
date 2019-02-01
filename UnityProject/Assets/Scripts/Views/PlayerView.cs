@@ -27,6 +27,12 @@ namespace UniRxExampleProject.Presenters
         [RequiredProperty]
         public Button DecreaseHealth { get { return this._decreaseHealth; } }
 
+        [SerializeField]
+        private Button _reset = null;
+
+        [RequiredProperty]
+        public Button Reset { get { return this._reset; } }
+
         private void Awake()
         {
             if (!this.IsValidObject())

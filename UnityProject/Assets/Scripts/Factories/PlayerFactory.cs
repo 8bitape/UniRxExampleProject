@@ -23,21 +23,23 @@ namespace UniRxExampleProject.Factories
         {
             this.PlayerData = Resources.Load<PlayerData>(this._playerDataPath);
 
-            if (!this.PlayerData.IsValidObject())
-            {
-                return;
-            }
-
-            this.PlayerModel = new PlayerModel(this.PlayerData.Name, this.PlayerData.MaxHealth);
+            this.PlayerModel = new PlayerModel(this.PlayerData);
 
             if (!this.PlayerModel.IsValidObject())
             {
                 return;
             }
 
-            this.gameObject.AddComponent<PlayerHealth>().Init(this.PlayerModel);
-
             this.Register(new BehaviorSubject<PlayerModel>(this.PlayerModel));
+
+            this.gameObject.AddComponent<PlayerHealth>();            
+        }
+
+        private void Start()
+        {
+            PubSub.GetEvent<Reset>()
+                .Where(_ => this.IsValidObject())
+                .Subscribe(_ => this.PlayerModel.Reset(this.PlayerData));
         }
     }
 }

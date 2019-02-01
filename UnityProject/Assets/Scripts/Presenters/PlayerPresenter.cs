@@ -1,6 +1,6 @@
-﻿using UniRxEventAggregator.Events;
+﻿using UniRx;
+using UniRxEventAggregator.Events;
 using UniRxExampleProject.Models;
-using UnityEngine;
 using UnityFramework.Attributes;
 using UnityFramework.Extensions;
 
@@ -23,15 +23,32 @@ namespace UniRxExampleProject.Presenters
 
         private void Start()
         {
-            if(this.PlayerModel.IsValidObject())
-            {
-                Debug.Log(this.PlayerModel.Name);
-            }
+            this.PlayerView.DecreaseHealth
+                .OnClickAsObservable()
+                .Where(_ => this.IsValidObject())
+                .Subscribe(_ => PubSub.Publish(new DecreaseHealth(10)));
 
-            if (this.PlayerView.IsValidObject())
-            {
-                Debug.Log(this.PlayerView.CurrentHealth.text);
-            }
+            this.PlayerView.Reset
+                .OnClickAsObservable()
+                .Where(_ => this.IsValidObject())
+                .Subscribe(_ => PubSub.Publish(new Reset()));
+
+            this.PlayerModel.Name
+                .Where(_ => this.IsValidObject())
+                .SubscribeToText(this.PlayerView.Name);
+
+            this.PlayerModel.CurrentHealth
+                .Where(_ => this.IsValidObject())
+                .SubscribeToText(this.PlayerView.CurrentHealth);
+
+            this.PlayerModel.IsDead
+                .Where(_ => this.IsValidObject())
+                .Where(x => x)
+                .Subscribe(_ => this.PlayerView.DecreaseHealth.interactable = false);
+
+            PubSub.GetEvent<Reset>()
+                .Where(_ => this.IsValidObject())
+                .Subscribe(_ => this.PlayerView.DecreaseHealth.interactable = true);
         }
     }
 }
