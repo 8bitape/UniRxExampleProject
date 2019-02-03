@@ -21,6 +21,7 @@ namespace UniRxExampleProject.Factories
 
         private void Awake()
         {
+            // Loads player data from scriptable object
             this.PlayerData = Resources.Load<PlayerData>(this._playerDataPath);
 
             if (!this.PlayerData.IsValidObject())
@@ -28,6 +29,7 @@ namespace UniRxExampleProject.Factories
                 return;
             }
 
+            // Creates new player model from player data
             this.PlayerModel = new PlayerModel(this.PlayerData);
 
             if (!this.PlayerModel.IsValidObject())
@@ -35,8 +37,10 @@ namespace UniRxExampleProject.Factories
                 return;
             }
 
+            // Registers player model so other components can get ref
             this.Register(new BehaviorSubject<PlayerModel>(this.PlayerModel));
 
+            // Adds player health component to factory
             this.gameObject.AddComponent<PlayerHealth>();            
         }
     }

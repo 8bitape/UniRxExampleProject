@@ -28,6 +28,7 @@ namespace UniRxExampleProject.Presenters
                 return;
             }
 
+            // Setup bindings from view to events or model
             this.PlayerView.DecreaseHealth
                 .OnClickAsObservable()
                 .Subscribe(_ => PubSub.Publish(new DecreaseHealth(10)));
@@ -40,6 +41,7 @@ namespace UniRxExampleProject.Presenters
                     this.PlayerView.DecreaseHealth.interactable = true;
                 });                
 
+            // Setup bindings from model to view
             this.PlayerModel.Name
                 .SubscribeToText(this.PlayerView.Name);
 

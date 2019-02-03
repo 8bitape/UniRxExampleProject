@@ -22,6 +22,7 @@ namespace UniRxExampleProject.Models
 
         public PlayerModel(PlayerData playerData)
         {
+            // Initialises reactive properties with initial data
             this.Name = new ReactiveProperty<string>(playerData.Name);
 
             this.MaxHealth = new ReactiveProperty<int>(playerData.MaxHealth);

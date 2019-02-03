@@ -40,6 +40,7 @@ namespace UniRxExampleProject.Presenters
                 return;
             }
             
+            // Registers view so other components can get ref
             this.Register(new BehaviorSubject<PlayerView>(this));
         }
     }
