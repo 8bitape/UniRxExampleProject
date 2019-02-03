@@ -18,8 +18,12 @@ namespace UniRxExampleProject.Components
 
         public void Start()
         {
+            if (!this.IsValidObject())
+            {
+                return;
+            }
+
             PubSub.GetEvent<DecreaseHealth>()
-                .Where(_ => this.IsValidObject())
                 .Subscribe(this.DecreaseHealth);
         }
 

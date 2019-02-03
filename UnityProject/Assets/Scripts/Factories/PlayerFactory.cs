@@ -23,6 +23,11 @@ namespace UniRxExampleProject.Factories
         {
             this.PlayerData = Resources.Load<PlayerData>(this._playerDataPath);
 
+            if (!this.PlayerData.IsValidObject())
+            {
+                return;
+            }
+
             this.PlayerModel = new PlayerModel(this.PlayerData);
 
             if (!this.PlayerModel.IsValidObject())
@@ -33,13 +38,6 @@ namespace UniRxExampleProject.Factories
             this.Register(new BehaviorSubject<PlayerModel>(this.PlayerModel));
 
             this.gameObject.AddComponent<PlayerHealth>();            
-        }
-
-        private void Start()
-        {
-            PubSub.GetEvent<Reset>()
-                .Where(_ => this.IsValidObject())
-                .Subscribe(_ => this.PlayerModel.Reset(this.PlayerData));
         }
     }
 }

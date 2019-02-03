@@ -12,6 +12,9 @@ namespace UniRxExampleProject.Models
         public ReactiveProperty<string> Name { get; set; }
 
         [RequiredProperty]
+        public ReactiveProperty<int> MaxHealth { get; set; }
+
+        [RequiredProperty]
         public ReactiveProperty<int> CurrentHealth { get; set; }
 
         [RequiredProperty]
@@ -21,18 +24,13 @@ namespace UniRxExampleProject.Models
         {
             this.Name = new ReactiveProperty<string>(playerData.Name);
 
+            this.MaxHealth = new ReactiveProperty<int>(playerData.MaxHealth);
+
             this.CurrentHealth = new ReactiveProperty<int>(playerData.MaxHealth);
 
             this.IsDead = this.CurrentHealth
                 .Select(x => x <= 0)
                 .ToReadOnlyReactiveProperty();
-        }
-
-        public void Reset(PlayerData playerData)
-        {
-            this.Name.Value = playerData.Name;
-
-            this.CurrentHealth.Value = playerData.MaxHealth;
         }
     }
 }

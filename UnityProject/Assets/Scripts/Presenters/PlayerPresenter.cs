@@ -23,32 +23,32 @@ namespace UniRxExampleProject.Presenters
 
         private void Start()
         {
+            if (!this.IsValidObject())
+            {
+                return;
+            }
+
             this.PlayerView.DecreaseHealth
                 .OnClickAsObservable()
-                .Where(_ => this.IsValidObject())
                 .Subscribe(_ => PubSub.Publish(new DecreaseHealth(10)));
 
             this.PlayerView.Reset
                 .OnClickAsObservable()
-                .Where(_ => this.IsValidObject())
-                .Subscribe(_ => PubSub.Publish(new Reset()));
+                .Subscribe(_ =>
+                {
+                    this.PlayerModel.CurrentHealth.Value = this.PlayerModel.MaxHealth.Value;
+                    this.PlayerView.DecreaseHealth.interactable = true;
+                });                
 
             this.PlayerModel.Name
-                .Where(_ => this.IsValidObject())
                 .SubscribeToText(this.PlayerView.Name);
 
             this.PlayerModel.CurrentHealth
-                .Where(_ => this.IsValidObject())
                 .SubscribeToText(this.PlayerView.CurrentHealth);
 
             this.PlayerModel.IsDead
-                .Where(_ => this.IsValidObject())
                 .Where(x => x)
-                .Subscribe(_ => this.PlayerView.DecreaseHealth.interactable = false);
-
-            PubSub.GetEvent<Reset>()
-                .Where(_ => this.IsValidObject())
-                .Subscribe(_ => this.PlayerView.DecreaseHealth.interactable = true);
+                .Subscribe(_ => this.PlayerView.DecreaseHealth.interactable = false);                
         }
     }
 }
