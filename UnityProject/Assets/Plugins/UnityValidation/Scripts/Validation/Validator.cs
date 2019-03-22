@@ -18,24 +18,23 @@ public static class Validator
 
         var props = new List<PropertyInfo>();
 
-        if (cachedProps.ContainsKey(_object.GetType()))
-        {
-            cachedProps.TryGetValue(_object.GetType(), out props);
-        }
-        else
+        if (!cachedProps.TryGetValue(_object.GetType(), out props))
         {
             props = GetPropertiesWithValidationAttributes(_object);
 
             cachedProps.Add(_object.GetType(), props);
-        }            
+        }      
 
         foreach (var prop in props)
         {
-            if (!GetValidationAttribute(prop).IsValid(prop.GetValue(_object)))
+            foreach (var attribute in GetValidationAttributes(prop))
             {
-                Debug.LogWarning($"{ prop.Name } property is not valid.");
+                if (!attribute.IsValid(prop.GetValue(_object)))
+                {
+                    Debug.LogWarning($"{ prop.Name } property is not valid.");
 
-                return false;
+                    return false;
+                }
             }
         }
 
@@ -47,19 +46,19 @@ public static class Validator
         var props = _object
             .GetType()
             .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-            .Where(x => HasValidationAttribute(x))
+            .Where(x => HasValidationAttributes(x))
             .ToList();
 
         return props;
     }
 
-    private static ValidationAttribute GetValidationAttribute(PropertyInfo prop)
+    private static ValidationAttribute[] GetValidationAttributes(PropertyInfo prop)
     {
-        return System.Attribute.GetCustomAttribute(prop, typeof(ValidationAttribute)) as ValidationAttribute;
+        return System.Attribute.GetCustomAttributes(prop, typeof(ValidationAttribute)) as ValidationAttribute[];
     }
 
-    private static bool HasValidationAttribute(PropertyInfo prop)
+    private static bool HasValidationAttributes(PropertyInfo prop)
     {
-        return GetValidationAttribute(prop) != null ? true : false;
+        return GetValidationAttributes(prop) != null ? true : false;
     }
 }

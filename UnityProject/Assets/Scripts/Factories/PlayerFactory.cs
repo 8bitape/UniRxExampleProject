@@ -4,8 +4,8 @@ using UniRxExampleProject.Components;
 using UniRxExampleProject.Data;
 using UniRxExampleProject.Models;
 using UnityEngine;
-using UnityFramework.Attributes;
-using UnityFramework.Extensions;
+using UnityValidation.Attributes;
+using UnityValidation.Extensions;
 
 namespace UniRxExampleProject.Factories
 {

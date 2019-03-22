@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace UnityFramework.Attributes
+namespace UnityValidation.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
 

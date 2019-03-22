@@ -2,8 +2,8 @@
 using UniRxEventAggregator.Events;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityFramework.Attributes;
-using UnityFramework.Extensions;
+using UnityValidation.Attributes;
+using UnityValidation.Extensions;
 
 namespace UniRxExampleProject.Presenters
 {

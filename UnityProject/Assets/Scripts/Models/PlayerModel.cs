@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using UniRx;
 using UniRxExampleProject.Data;
-using UnityEngine;
-using UnityFramework.Attributes;
+using UnityValidation.Attributes;
 
 namespace UniRxExampleProject.Models
 {

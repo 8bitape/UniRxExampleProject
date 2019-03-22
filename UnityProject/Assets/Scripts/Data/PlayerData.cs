@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityFramework.Attributes;
+using UnityValidation.Attributes;
 
 namespace UniRxExampleProject.Data
 {

@@ -1,8 +1,8 @@
 ﻿using UniRx;
 using UniRxEventAggregator.Events;
 using UniRxExampleProject.Models;
-using UnityFramework.Attributes;
-using UnityFramework.Extensions;
+using UnityValidation.Attributes;
+using UnityValidation.Extensions;
 
 namespace UniRxExampleProject.Components
 {

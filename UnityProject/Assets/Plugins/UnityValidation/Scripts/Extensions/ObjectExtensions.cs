@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace UnityFramework.Extensions
+﻿namespace UnityValidation.Extensions
 {
     public static class ObjectExtensions
     {
